@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YT Archiver</title>
+    <link rel="stylesheet" href="/static/styles.css?v=8">
+  </head>
+  <body>
+    <main class="page">
+      <header class="mast">
+        <h1>YT Archiver</h1>
+      </header>
+
+      <section class="panel playlist-panel" aria-labelledby="download-heading">
+        <div class="panel-head">
+          <h2 id="download-heading">Playlist</h2>
+        </div>
+        <form id="download-form">
+          <label for="playlist-url">Playlist URL</label>
+          <div class="composer">
+            <input
+              id="playlist-url"
+              name="url"
+              type="url"
+              inputmode="url"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="https://www.youtube.com/playlist?list=…"
+              required
+            >
+            <button id="download-button" type="submit">Download playlist</button>
+          </div>
+          <div class="folder-field">
+            <label for="output-dir">Save to</label>
+            <div class="composer">
+              <input
+                id="output-dir"
+                name="output_dir"
+                type="text"
+                spellcheck="false"
+                autocomplete="off"
+                placeholder="Choose a folder"
+                required
+              >
+              <button id="browse-button" class="ghost" type="button">Browse</button>
+            </div>
+          </div>
+          <div class="choice-row">
+            <div>
+              <label for="audio">Audio</label>
+              <select id="audio" name="audio">
+                <option value="hi">Hindi</option>
+                <option value="en">English</option>
+                <option value="bn">Bangla</option>
+                <option value="original">Original</option>
+              </select>
+            </div>
+            <div>
+              <label for="quality">Quality</label>
+              <select id="quality" name="quality">
+                <option value="2160">4K</option>
+                <option value="1440">1440p</option>
+                <option value="1080" selected>1080p</option>
+                <option value="720">720p</option>
+                <option value="480">480p</option>
+                <option value="360">360p</option>
+              </select>
+            </div>
+            <div>
+              <label for="queue-size">Queue</label>
+              <input
+                id="queue-size"
+                name="concurrency"
+                type="number"
+                min="1"
+                max="5"
+                step="1"
+                inputmode="numeric"
+                value="1"
+                required
+              >
+            </div>
+          </div>
+          <div class="folder-field">
+            <label for="cookies-file">Sign in</label>
+            <div class="composer">
+              <input
+                id="cookies-file"
+                name="cookies"
+                type="text"
+                spellcheck="false"
+                autocomplete="off"
+                placeholder="Optional cookies.txt"
+              >
+              <button id="cookies-browse" class="ghost" type="button">Browse</button>
+              <button id="cookies-clear" class="ghost" type="button">Clear</button>
+            </div>
+            <p class="hint">Export cookies.txt from the browser where you are signed in to YouTube. Leave this empty to download without a sign-in.</p>
+          </div>
+        </form>
+        <p id="ffmpeg-warning" class="banner" hidden></p>
+        <p id="form-error" class="banner error" role="alert" hidden></p>
+      </section>
+
+      <section class="panel" aria-labelledby="queue-heading">
+        <div class="panel-head">
+          <h2 id="queue-heading">Queue</h2>
+          <div class="queue-tools">
+            <p id="summary" aria-live="polite">Waiting for a playlist.</p>
+            <button id="stop-button" class="ghost slim" type="button" hidden>Stop</button>
+            <button id="resume-button" class="ghost slim" type="button" hidden>Resume</button>
+          </div>
+        </div>
+        <p id="empty-state" class="empty">Nothing in the queue yet.</p>
+        <ol id="queue" class="queue"></ol>
+      </section>
+
+      <footer>
+        <p>Save only playlists you have the right to keep.</p>
+      </footer>
+    </main>
+    <script src="/static/app.js?v=11"></script>
+  </body>
+</html>

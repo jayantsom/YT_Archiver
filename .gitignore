@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.py[cod]
+downloads/*
+!downloads/.gitkeep
+settings.json
+cookies.txt
+app/static/active-job.json
